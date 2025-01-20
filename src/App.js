@@ -26,8 +26,7 @@ function App() {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        // const response = await fetch(`https://life-rpg-gacha.onrender.com/get-collectables?username=${username}`);
-        const response = await fetch(`http://127.0.0.1:5000/get-collectables?username=${userName}`);
+        const response = await fetch(`https://life-rpg-gacha.onrender.com/get-collectables?username=${username}`);
         const data = await response.json();
         setInventory(data); // Initialize the inventory state
       } catch (error) {
@@ -41,10 +40,7 @@ function App() {
     try {
       const response = await Promise.all(
         Array.from({ length: 1 }).map(() =>
-          // fetch("https://life-rpg-gacha.onrender.com/draw1card", {
-          //   method: "POST",
-          // }).then((res) => res.json())
-          fetch("http://127.0.0.1:5000/draw1card", {
+          fetch("https://life-rpg-gacha.onrender.com/draw1card", {
             method: "POST",
           }).then((res) => res.json())
         )
