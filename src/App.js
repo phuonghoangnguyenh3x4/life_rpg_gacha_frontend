@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const response = await fetch(`https://life-rpg-gacha.onrender.com/get-collectables?username=${username}`);
+        const response = await fetch(`https://life-rpg-gacha.onrender.com/get-collectables?username=${userName}`);
         const data = await response.json();
         setInventory(data); // Initialize the inventory state
       } catch (error) {
