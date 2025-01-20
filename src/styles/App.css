@@ -1,0 +1,33 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #282c34;
+  color: #fff;
+  text-align: center;
+}
+
+.App {
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.gacha-draw {
+  margin: 20px;
+}
+
+.draw-button {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  color: #000;
+  cursor: pointer;
+}
+
+.draw-button:hover {
+  background-color: #ffaa00;
+}
