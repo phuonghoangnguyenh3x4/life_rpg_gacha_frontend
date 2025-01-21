@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Inventory from "./components/Inventory";
+import Loading from './components/Loading';
 import "./styles/App.css";
 import { useLocation } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ function useQuery() {
 }
 
 function Collection() {
+  const [isLoading, setIsLoading] = useState(true);
   const [inventory, setInventory] = useState([]);
   const query = useQuery();
   const userName = query.get('username');
@@ -21,15 +23,23 @@ function Collection() {
         setInventory(data); // Initialize the inventory state
       } catch (error) {
         console.error("Error fetching inventory:", error);
+      } finally { 
+        setIsLoading(false); // Set loading to false once the data is fetched 
       }
     };
     fetchInventory();
   }, [userName]); // Empty dependency array ensures it runs only once
 
   return (
-    <div className="App">
-        <Inventory inventory={inventory} />
-    </div>
+    <>
+      {isLoading ? ( 
+        <Loading />
+      ) : (
+        <div className="App">
+            <Inventory inventory={inventory} />
+        </div>
+      )}
+    </>
   );
 }
 

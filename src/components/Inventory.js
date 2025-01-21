@@ -2,6 +2,7 @@ import React from "react";
 import "./../styles/Card.css";
 
 function Inventory({ inventory }) {
+  if (!inventory) { return <div>No data available</div>; }
   return (
     <div className="inventory">
       <h2>📜 Your Inventory</h2>

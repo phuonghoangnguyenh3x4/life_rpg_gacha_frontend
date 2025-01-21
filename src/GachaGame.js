@@ -3,10 +3,12 @@ import GachaDraw from "./components/GachaDraw";
 import CardDisplay from "./components/CardDisplay";
 import Inventory from "./components/Inventory";
 import Login from './components/Login';
+import Loading from './components/Loading';
 import "./styles/App.css";
 import usersData from './users.json';
 
 function GachaGame() {
+  const [isLoading, setIsLoading] = useState(true);
   const [inventory, setInventory] = useState([]);
   const [cardDrawn, setCardDrawn] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,6 +33,8 @@ function GachaGame() {
         setInventory(data); // Initialize the inventory state
       } catch (error) {
         console.error("Error fetching inventory:", error);
+      } finally { 
+        setIsLoading(false); // Set loading to false once the data is fetched 
       }
     };
     fetchInventory();
@@ -62,7 +66,11 @@ function GachaGame() {
             </header>
             <GachaDraw onDraw={handleDraw} />
             <CardDisplay inventory={cardDrawn} />
-            <Inventory inventory={inventory} />
+            {isLoading ? ( 
+              <Loading />
+            ) : (
+              <Inventory inventory={inventory} />
+            )}
           </>
         ) : (
           <Login onLogin={handleLogin} />
